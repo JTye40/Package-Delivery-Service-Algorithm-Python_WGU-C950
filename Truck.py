@@ -1,6 +1,10 @@
 import datetime
 
+
 class Truck:
+    """
+    A class modeling a delivery truck.
+    """
 
     def __init__(self, truck_id, packages, departure_time):
         self.truck_id = truck_id
@@ -14,12 +18,12 @@ class Truck:
         self.departure_time = departure_time
         self.current_time = departure_time
 
+
     def load_package(self, package):
         if package is not None and self.load <= self.max_capacity:
             self.packages.append(package)
             self.load += 1
 
-    def return_to_hub(self, mileage):
-        self.mileage += mileage
+
+    def return_to_hub(self):
         self.address = self.hub
-        self.current_time += datetime.timedelta(hours=mileage / 18)

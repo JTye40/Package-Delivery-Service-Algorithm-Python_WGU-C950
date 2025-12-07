@@ -18,12 +18,13 @@ class Truck:
         self.departure_time = departure_time
         self.current_time = departure_time
 
-
     def load_package(self, package):
         if package is not None and self.load <= self.max_capacity:
             self.packages.append(package)
             self.load += 1
 
-
     def return_to_hub(self):
         self.address = self.hub
+
+    def __str__(self):
+        return f"{self.truck_id}"

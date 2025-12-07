@@ -1,3 +1,6 @@
+import datetime
+
+
 class Package:
     """
     A class modeling a package and its required properties within a delivery service.
@@ -15,6 +18,7 @@ class Package:
         self.status = "Currently at Hub"
         self.depart_time = None
         self.delivery_time = None
+        self.current_truck_id = None
 
 
     def update_status(self, user_selected_time):
@@ -22,6 +26,8 @@ class Package:
             self.status = "En Route"
         if self.delivery_time is not None:
             self.status = "Delivered"
+        if user_selected_time <= datetime.timedelta(hours= 9, minutes= 5) and "Delayed" in self.special_notes:
+            self.status = "Delayed -- Currently in flight"
 
 
     def show_package_status(self):
@@ -29,7 +35,9 @@ class Package:
                 f"Address: {self.address}\t\t"
                 f"Delivery Deadline: {self.delivery_deadline}\t\t"
                 f"Status: {self.status}\t\t"
-                f"Time of Delivery: {self.delivery_time}")
+                f"Time of Delivery: {self.delivery_time}\t\t"
+                f"Truck: {self.current_truck_id}")
+
 
     def __str__(self):
         return (f"Package ID: {self.package_id}\n"
@@ -41,7 +49,8 @@ class Package:
                 f"Package Weight: {self.weight}\n"
                 f"Status: {self.status}\n"
                 f"Departure Time: {self.depart_time}\n"
-                f"Time of Delivery: {self.delivery_time}")
+                f"Time of Delivery: {self.delivery_time}\n"
+                f"Truck: {self.current_truck_id}")
 
 
     def __repr__(self):
@@ -53,4 +62,5 @@ class Package:
                  f"Delivery Deadline: {self.delivery_deadline}\n"
                  f"Package Weight: {self.weight}\n"
                  f"Status: {self.status}\n"
-                 f"Time of Delivery: {self.delivery_time}\n\n")
+                 f"Time of Delivery: {self.delivery_time}\n\n"
+                 f"Truck: {self.current_truck_id}")
